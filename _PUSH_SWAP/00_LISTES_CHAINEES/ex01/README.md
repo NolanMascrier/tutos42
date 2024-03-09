@@ -54,6 +54,7 @@ t_hero hero_init(char *name, int power)
   
   h.name = name;
   h.power = power;
+  h.next = NULL;
   return (h);
 }
 ```
@@ -67,6 +68,7 @@ t_hero *hero_init(char *name, int power)
   h = ft_calloc(1, sizeof(t_hero));
   h->name = name;
   h->power = power;
+  h->next = NULL;
   return (h);
 }
 ```
