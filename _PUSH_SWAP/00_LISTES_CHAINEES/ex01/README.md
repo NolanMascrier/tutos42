@@ -1,4 +1,4 @@
-## Exercice 1 - Initialisation de la chaine
+# Exercice 1 - Initialisation de la chaine
 
 Pour ce premier exercice, créez une fonction qui initialise le premier élément de la structure. Créez également une fonction qui affiche _tout_ le contenu du chainon. Utilisez les en-têtes suivantes :
 ```C
@@ -17,7 +17,7 @@ Le programme doit ensuite afficher le contenu des deux chainons. Oui, ça inclue
 >
 > Je vous demande deux chainons différent pour une raison. Observez la différence entre `.` et `->` ...
 
-### Explications
+## Explications
 
 Lorsque vous utilisez directement une strucutre (ici, `h1`), vous devez appeler les champs via un `.`, ce qui est fait dans cette ligne :
 
@@ -43,7 +43,7 @@ Vous remarquez égalemment que nous allouons de la mémoire dans les deux cas, v
 
 En effet, dans cette situation, si vous libérez la mémoire de la structure avant, vous n'aurez plus de pointeur dessus; il sera alors impossible d'accéder a la zone mémoire allouée au nom, créant ainsi une fuite mémoire !
 
-### Pour approfondir
+## Pour approfondir
 
 Ici, la fonction d'initialisation modifie une structure déjà existante, expliquant la nécessité du pointeur. Cependant, on peut imaginer une situation alternative, à savoir que la fonction crée la structure directement, qu'il renvoie alors :
 
