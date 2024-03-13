@@ -22,8 +22,6 @@ Vous reconnaissez la syntaxe d'une structure - c'est en effet la même. Le seul 
 
 Sauf précisions, n'utilisez que des fonctions que vous avez codé vous même, en dehors de `malloc` et de `printf`. Tout code produit ne doit comporter aucune fuite mémoire. Le respect de la norme est optionnelle, mais recommandé (nan, vraiment). 
 
-Chaque dossier contiendra l'énoncé de l'exercice, le code associé, ainsi que des explications si vous n'y arrivez pas. De plus, vous êtes égalemment libres d'utiliser votre libft, ou d'intégrer uniquement les fonctions nécessaires.
-
 ## Exercice 1 - Initialisation de la chaine
 
 Pour ce premier exercice, créez une fonction qui initialise le premier élément de la structure. Créez également une fonction qui affiche _tout_ le contenu du chainon. Utilisez les en-têtes suivantes :

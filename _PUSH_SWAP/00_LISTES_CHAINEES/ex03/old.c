@@ -1,16 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   old.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nmascrie <nmascrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/09 22:43:07 by nmascrie          #+#    #+#             */
-/*   Updated: 2024/03/09 22:43:12 by nmascrie         ###   ########.fr       */
+/*   Created: 2024/03/09 22:43:19 by nmascrie          #+#    #+#             */
+/*   Updated: 2024/03/09 22:43:24 by nmascrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "linked_list.h"
+
+void  hero_init(t_hero *hero, char *name, int power)
+{
+    hero->name = ft_strdup(name);
+    hero->power = power;
+    hero->next = NULL;
+}
+
+void  hero_print(t_hero *hero)
+{
+    printf("Hero : %s (Power : %d, ref to next : %p)\n", hero->name, hero->power, hero->next);
+}
 
 void  hero_add(t_hero *hero, char *name, int power)
 {
@@ -43,28 +55,4 @@ void  hero_print_all(t_hero *hero)
         hero = hero->next;
         i++;
     }
-}
-
-int main(void)
-{
-    t_hero *h;
-
-    h = ft_calloc(1, sizeof(t_hero));
-    printf("-----------------TEST A-----------------\n");
-    hero_print_all(h);
-    printf("-----------------TEST B-----------------\n");
-    hero_add(h, "Chris", 200);
-    hero_print_all(h);
-    printf("-----------------TEST C-----------------\n");
-    hero_add(h, "Jill", 115);
-    hero_print_all(h);
-    printf("-----------------TEST D-----------------\n");
-    hero_add(h, "Barry", -6);
-    hero_print_all(h);
-    free(h->next->next->name);
-    free(h->next->next);
-    free(h->next->name);
-    free(h->next);
-    free(h->name);
-    free(h);
 }
