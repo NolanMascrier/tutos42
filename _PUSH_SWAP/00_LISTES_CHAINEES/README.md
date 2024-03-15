@@ -117,3 +117,26 @@ Utilisez les en-têtes suivantes :
 void   hero_attack(t_hero *hero, int n, int pow);
 ```
 N'oubliez pas de tester. 
+
+## Examen !
+
+Cet exercice n'est pas nécessaire, mais il peut être un petit challenge stimulant pour vous.
+
+Implémentez une calculatrice. La calculatrice doit
+* Utiliser une liste chainée
+* Être capable d'utiliser les opérations basiques (+, -, *, /, ^)
+* Être capable d'utiliser les parenthèses
+* Ne pas calculer en direct, c'est a dire que le calcul n'est effectué qu'au dernier moment, _en respectant les priorités de calcul_ !
+* Être intéractive :
+*  * Elle attends les entrées de l'utilisateurs. 
+*  * Les entrées ne peuvent être que des nombres ENTIERS (le resultat des divisions est arrondi au plus proche), positifs et négatifs, des opérations, ou des parenthèses.
+*  * Vous êtes libres d'implémenter une aide/rappel, qui sera appelé si l'entrée est `?`, `help` ou quelque chose du genre.
+*  * L'entrée `=` termine le programme, calcule le résultat, et affiche ce dernier.
+*  * Après chaque entrée, le calcul doit être affiché en entier.
+
+BONUS !
+
+* CTRL+D doit faire un _UNDO_ sur votre calcul, a savoir retire la dernière valeure entrée. Il est possible d'_UNDO_ l'entiereté du calcul ...
+* CTRL+C doit faire un _REDO_, a savoir retire le dernier _UNDO_. Cependant, il n'est pas possible de _REDO_ si la dernière action effectuée n'était pas un _UNDO_ ...
+
+Ce bonus vous initiera inconsciemment au concept de pile et de file, et en plus vous donnera quelques petits indices pour minishell. 

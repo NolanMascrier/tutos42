@@ -1,74 +1,4 @@
-## Qu'est-ce qu'une liste chainée ?
-Une liste chainée est une structure particulière, possédant au moins parmis ses champs un pointeur vers un autre élément, étant lui même du type de la structure. Ainsi, une "chaine" se crée entre plusieurs fois la même structure, possédant des champs différents. Chaque élement sera nommé chainon. 
-
-Voici un exemple un peu poussé de représentation de liste chainée, vu qu'il posséde un pointeur vers l'élement précédent.
-![291021993-860874c3-9c3e-4134-aece-2e69c494a803](https://github.com/IrinaNekotari/tutos42/assets/63266772/7057b565-0c6d-4b36-9116-177a4110c4f2)
-On peut ici voir que la liste chainée possède 5 chainons, chaquant possédant trois champs. 
-
-L'avantage d'une liste chainée comparée a un tableau ou double tableau est évidente : non seulement on peut mettre plusieurs types de valeurs par "cases", c'est égalemment plus simple a écrire. Cependant, il est impossible d'_accéder_ directement à l'une des "cases", on est obligés de parcourir la liste entière jusqu'a l'élement voulu, ce qui peut ralentir l'éxecution du programme lors de l'utilisation de listes chainées extrémement longues. 
-
-Observons la syntaxe d'une liste chainée. 
-
-```C
-typedef struct s_hero
-{
-  char  *name;
-  int   power;
-  struct s_hero  *next;
-}	t_hero;
-```
-
-Vous reconnaissez la syntaxe d'une structure - c'est en effet la même. Le seul ajout étant `struct s_hero *next;`, un pointeur vers l'élément suivant. Nous utiliserons la structure `s_hero` pour tous les exercices, alors n'hésitez pas a l'ajouter dans votre **.h**.
-
-Sauf précisions, n'utilisez que des fonctions que vous avez codé vous même, en dehors de `malloc` et de `printf`. Tout code produit ne doit comporter aucune fuite mémoire. Le respect de la norme est optionnelle, mais recommandé (nan, vraiment). 
-
-## Exercice 1 - Initialisation de la chaine
-
-Pour ce premier exercice, créez une fonction qui initialise le premier élément de la structure. Créez également une fonction qui affiche _tout_ le contenu du chainon. Utilisez les en-têtes suivantes :
-```C
-void  hero_init(t_hero *hero, char *name, int power);
-void  hero_print(t_hero *hero);
-```
-De plus, ajoutez une fonction main qui initalise les _deux_ listes chainées suivantes :
-```C
-t_hero h1;
-t_hero *h2;
-```
-Le programme doit ensuite afficher le contenu des deux chainons. Oui, ça inclue aussi le pointeur ... 
-
-> [!TIP]
-> Tout champ _doit_ être initialisé à une valeur, même si cette dernière est NULL ...
->
-> Je vous demande deux chainons différent pour une raison. Observez la différence entre `.` et `->` ...
-
-## Exercice 2 - Enchainer la chaine
-Reprenez le code du premier exercice. Ajoutez une fonction qui ajoute un nouveau chainon _a la fin_ de la chaine. De plus, créez une fonction qui affiche _l'entiereté_ de la chaine. Utilisez les en-têtes suivantes :
-```C
-void  hero_add(t_hero *hero, char *name, int power);
-void  hero_print_all(t_hero *hero);
-```
-> [!CAUTION]
-> `hero_add()` DOIT utiliser `hero_init()` !
-
-Créez un programme de test initialisant une chaine, et ajoutant un chainon. L'entièreté de la chaine doit être affiché deux fois, avant et après l'ajout. 
-
-> [!TIP]
-> Pour se déplacer dans une chaine, vous devez rendre le chainon courant égal au chainon suivant ... Attention cependant a ne pas le rendre égal a NULL !
-
-## Exercice 3 - ça se complique
-Reprenez le code de l'exercice précédant. Ajoutez des alternatives a `hero_add()` et `hero_init()`, qui prendront un pointeur vers un chainon a la place. Utilisez les en-têtes suivantes :
-```C
-void  hero_init_alt(t_hero *hero, t_hero *add);
-void  hero_add_alt(t_hero *hero, t_hero *add);
-```
-`add` étant bien entendu le chainon venant se greffer a notre liste. N'oubliez pas de créer un programme de test.
-
-> [!IMPORTANT]
-> Assurez vous que la liste ne boucle pas, c'est-a-dire que le pointeur next d'un chainon ne peut pas renvoyer vers un chainon se situant _avant_ le chainon courant.
->
-> Avoir une liste bouclante n'est pas un interdit, vous pourrez peut être en avoir besoin un jour ou un autre. Mais pas aujourd'hui ...
-
-## Exercice 4 - Sans queue ni tête
+# Exercice 4 - Sans queue ni tête
 Reprenez le code de l'exercice précédant. Ajoutez une fonction qui renvoie un pointeur vers _la queue_ de la liste, c'est a dire son dernier élément. De plus, ajoutez une fonction qui ajoute un chainon _en tête_ de la liste. Utilisez les en-têtes suivantes :
 ```C
 t_hero *hero_get_tail(t_hero *hero);
@@ -79,41 +9,50 @@ N'oubliez pas de tester.
 > [!INFO]
 > Vous pouvez utiliser la queue de votre chaine pour simplifier les ajouts. *
 
-## Exercice 5 - Coupez !
-Reprenez le code de l'exercice précédant. Ajoutez une fonction qui supprime un élément de la chaine. La chaine ne doit pas être brisée pour autant : vous devez recoller les deux morceaux. Utilisez les en-têtes suivantes :
+## Explications
+
+Quelque chose cloche, n'est-ce pas ? En effet, je vous ai induit en erreur ... 
+
+Le principe de la queue est triviale; il vous suffit de renvoyer le pointeur du dernier élément de la chaine. Cette fonction peut être faite de manière récursive ou itérative. Si l'élément courant possède un élément suivant, ce n'est pas le dernier ... Donc faite la même verification pour celui-ci, ainsi de suite. 
+
+Maintenant, ça se complique pour le push. Vous avez sans aucun doute envie de faire simplement :
+* On initialise un chainon
+* On lui donne comme _next_ le pointeur vers notre chaine
+* On recule la chaine
+
+N'est-ce pas ? Et bien, ce n'est pas faux. Cependant, ça ne va pas marcher, essayez le code vous même ... Vous remarquerez que notre chaine n'a pas bougé ! Elle ne contient toujours que trois éléments ! 
+
+On arrive dans l'un des concepts les plus abstraits et vils du C. Souvenez vous du début de votre aventure 42 ...
+
+* Si une fonction prends juste un _int_ comme paramètre, elle créera une copie locale.
+*  * Si vous modifiez cet int dans votre fonction, seule la copie est changée.
+* Alors, on utilise un pointeur vers ce _int_.
+*  * On peut alors modifier la zone pointée vers notre _int_. La mémoire elle même est modifiée, donc elle se repercute sur tout votre programme, et même sur _tout votre pc_ !
+*  * Mais vous pouvez vous douter de quelque chose ... Si lorsque je passe l'int directement, une copie locale est crée, est-ce qui se passe la même chose pour mon pointeur ?
+*  * La réponse est ... Oui ! Le pointeur est une copie locale. La zone mémoire est quelque chose de physique (des bits valant 0 ou 1 a l'intérieur de votre mémoire vive), et le pointeur est une représentation abstraite _pointant_ vers ladite zone mémoire. Cependant, puisque vous utilisez de manière physique ce pointeur, il est doit bien être stocké de manière physique quelque part, non ? 
+*  * Et s'il est stocké de manière physique, c'est qu'on peut avoir un pointeur sur ce dernier ...
+
+Souvenez vous la piscine. Elle vous a préparé pour ce moment. Vous vous souvenez peut être d'une fonction ressemblant a ça :
 ```C
-void   hero_cut(t_hero *hero);
+void foo(int **********a);
 ```
-N'oubliez pas de tester. 
-> [!TIP]
-> Recoller la chaine revient a dire que le `next` du chainon précédant le chainon coupé doit pointer vers le chainon suivant du chainon coupé ... 
-## Exercice 6 - Perfection
-Reprenez le code de l'exercice précédant. Ajoutez une fonction faisant appel a la fonction de coupe si la condition passée en paramètre est respectée. Ajoutez en une autre qui _modifie_ les champs via la fonction passée en paramètre. Le choix de la fonction de modification ainsi que le champ à modifier/vérifier vous est laissé libre, mais je vous recommande un `to_Upper()` pour la modification du char*, et une fonction qui vérifie si l'int vaut 0 ou moins ... 
+Et oui ! Ici, on utilise le pointeur du pointeur du pointeur [...] du pointeur vers la zone mémoire de `a` ! Mais revenons a notre liste chainée. Ici, vous voulez _reculer_ le pointeur de la liste chainée (qui, rappelons-le, pointe vers le _le premier élément de la liste_). Si vous reculez le pointeur, rien ne se passera ... Vu que ce n'est autre qu'une copie locale de ce pointeur. Donc, vous allez devoir utiliser le pointeur du pointeur.
 
-Utilisez les en-têtes suivantes :
+Changez donc vos en têtes par celle-ci : 
 ```C
-void   hero_cut_if(t_hero *hero, void (*f)(void *));
-void   hero_modify_all(t_hero *hero, void (*f)(void *));
+t_hero *hero_get_tail(t_hero *hero); //Celui ci n'as pas besoin d'être revu, bien entendu
+void   hero_push(t_hero **hero, char *name, int power);
+void   hero_push_alt(t_hero **hero, t_hero *add); //OPTIONNEL
 ```
+Compilez ... Et c'est pas bon. Bien entendu. Puisque maintenant votre _hero_ est un pointeur de pointeur (ou super pointeur), vous ne pouvez plus directement l'utiliser. Vous allez devoir le déréférencer, en ajoutant une étoile devant (et, par soucis de visibilité, en général, des parenthèses autour).
 
-N'oubliez pas de tester. 
-> [!TIP]
-> Ce morceau de code bien moche `void (*f)(void *)` permets de passer une fonction en paramètre. Si vous créez la fonction `int is_zero_or_less(int a);`, vous l'enverrez ainsi a votre fonction `hero_cut_if(h2, &is_zero_or_less)` ...
+Ainsi, `hero = this;` deviendra `(*hero) = this;` !
 
-## Exercice 7 - Ultime puissance
-Vous détenez maintenant le pouvoir de vie ou de mort sur votre héros. Ajoutez un second pointeur dans votre structure, qui pointera vers l'élément _précédant_ du chainon. Adaptez toutes les fonctions en conséquences. Créez une fonction qui _ciblera_ un hero a l'index _n_. N'ajoutez PAS cet index dans la structure, cela doit être entiérement géré dans la fonction ! Si l'index dépasse toutefois le nombre de chainons ... Revenez à 0, bien entendu. Une fois le hero ciblé, vous lancerez une attaque de puissance _pow_. Si la puissance de l'attaque dépasse celle du héros, ce dernier est éliminé, et son chainon retiré ! Mais ce n'est pas tout - Toute puissance qui est _superflue_ à la défaite de notre protagoniste sera doublée, et _débordera_ ainsi de suite sur les deux héros situés à droite et à gauche de notre victime. Si le héro est en bout de chaine, l'attaque ne débordera toutefois pas.
+Et magie ... Tout fonctionne !
 
-Si le hero survis à l'attaque, il est toutefois affaibli, et sa puissance est diminuée de la puissance de l'attaque. Pensez aux implications lors d'une réaction en chaine ... 
-Des messages adaptées doivent être affichés lorsque 
-* L'attaque est lancée - Le nom du héros ciblé ainsi que la puissance de l'attaque doivent être visibles.
-* Le héros subit des dégats - Faites un avant/après de sa puissance.
-* Si le héros survis, affichez un message plein d'espoir.
-* Sinon, le désespoir triomphe, et recommencez. 
+Cette arcane apocryphale, le déréférencement, vous sera extrémement utile pour minishell, si vous décidez d'utiliser des listes chainées pour le faire. 
+Vous pouvez théoriquement déréférencer (c'est dur a écrire) un nombre infini de fois. Cependant, si vous dépasser les 5 *, posez vous des questions, car la structure que vous utilisez devra surement être réecrite. De manière _très_ urgente.
 
-La fonction doit être récursive.
+## Pour aller plus loin
 
-Utilisez les en-têtes suivantes :
-```C
-void   hero_attack(t_hero *hero, int n, int pow);
-```
-N'oubliez pas de tester. 
+Pour tout vous avouer, bien que le code que je vous ai fourni dans les exercice fonctionne, il n'est pas _bon_. Pourquoi ? Si vous l'avez remarqué, toutes les fonctions assument que la liste a _déjà été initialisée_. Mais, maintenant que vous maitrisez le déréférencement, vous pouvez sans aucun doute modifier les fonctions afin qu'elle initialise une zone mémoire s'il la liste n'en a pas déjà de base ... 
