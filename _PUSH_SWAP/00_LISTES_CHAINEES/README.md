@@ -73,7 +73,6 @@ Reprenez le code de l'exercice précédant. Ajoutez une fonction qui renvoie un 
 ```C
 t_hero *hero_get_tail(t_hero *hero);
 void   hero_push(t_hero *hero, char *name, int power);
-void   hero_push_alt(t_hero *hero, t_hero *add); //OPTIONNEL
 ```
 N'oubliez pas de tester. 
 > [!INFO]
@@ -82,7 +81,7 @@ N'oubliez pas de tester.
 ## Exercice 5 - Coupez !
 Reprenez le code de l'exercice précédant. Ajoutez une fonction qui supprime un élément de la chaine. La chaine ne doit pas être brisée pour autant : vous devez recoller les deux morceaux. Utilisez les en-têtes suivantes :
 ```C
-void   hero_cut(t_hero *hero);
+void   hero_cut(t_hero **hero);
 ```
 N'oubliez pas de tester. 
 > [!TIP]

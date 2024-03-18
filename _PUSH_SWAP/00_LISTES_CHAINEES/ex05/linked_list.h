@@ -35,6 +35,7 @@ void  hero_init_alt(t_hero *hero, t_hero *add);
 void  hero_add_alt(t_hero *hero, t_hero *add);
 t_hero *hero_get_tail(t_hero *hero);
 void   hero_push(t_hero **hero, char *name, int power);
+void   hero_cut(t_hero **hero, int n);
 
 //UTILS
 size_t	ft_strlen(const char *s);

@@ -3,7 +3,6 @@ Reprenez le code de l'exercice précédant. Ajoutez une fonction qui renvoie un 
 ```C
 t_hero *hero_get_tail(t_hero *hero);
 void   hero_push(t_hero *hero, char *name, int power);
-void   hero_push_alt(t_hero *hero, t_hero *add); //OPTIONNEL
 ```
 N'oubliez pas de tester. 
 > [!INFO]
@@ -42,7 +41,6 @@ Changez donc vos en têtes par celle-ci :
 ```C
 t_hero *hero_get_tail(t_hero *hero); //Celui ci n'as pas besoin d'être revu, bien entendu
 void   hero_push(t_hero **hero, char *name, int power);
-void   hero_push_alt(t_hero **hero, t_hero *add); //OPTIONNEL
 ```
 Compilez ... Et c'est pas bon. Bien entendu. Puisque maintenant votre _hero_ est un pointeur de pointeur (ou super pointeur), vous ne pouvez plus directement l'utiliser. Vous allez devoir le déréférencer, en ajoutant une étoile devant (et, par soucis de visibilité, en général, des parenthèses autour).
 

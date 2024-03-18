@@ -12,22 +12,43 @@
 
 #include "linked_list.h"
 
-t_hero *hero_get_tail(t_hero *hero)
+void   hero_cut(t_hero **hero, int n)
 {
-    if (!hero->next)
-        return (hero);
-    else 
-        return (hero_get_tail(hero->next));
-}
+    int i;
+    t_hero *bck;
+    t_hero *ptr;
 
-void   hero_push(t_hero **hero, char *name, int power)
-{
-    t_hero *this;
-
-    this = ft_calloc(1, sizeof(t_hero));
-    hero_init(this, name, power);
-    this->next = (*hero);
-    (*hero) = this;
+    i = 0;
+    if (n < 0)
+        return ;
+    ptr = (*hero);
+    if (n == 0)
+    {
+        bck = ptr->next;
+        if (ptr->name)
+                free(ptr->name);
+        free(ptr);
+        (*hero) = bck;
+        return ;
+    }
+    while (ptr)
+    {
+        if ((i + 1) == n)
+            bck = ptr;
+        if (i == n)
+        {
+            bck->next = ptr->next;
+            if (ptr->name)
+                free(ptr->name);
+            free(ptr);
+            break ;
+        }
+        else 
+        i++;
+        if (!ptr->next)
+            break ;
+        ptr = ptr->next;
+    }
 }
 
 int main(void)
@@ -38,12 +59,20 @@ int main(void)
     printf("-----------------LISTE 1-----------------\n");
     hero_add(h, "Chris", 200);
     hero_add(h, "Jill", 110);
+    hero_add(h, "Leon", 120);
+    hero_add(h, "Albert", 999);
+    hero_add(h, "Ashley", 3);
+    hero_add(h, "Sheva", 105);
     hero_add(h, "Barry", -6);
     hero_print_all(h);
-    printf("--------------QUEUE DE LISTE--------------\n");
-    hero_print(hero_get_tail(h));
-    printf("-------------------PUSH-------------------\n");
-    hero_push(&h, "Albert", 999);
+    printf("-------------------CUT-------------------\n");
+    hero_cut(&h, 3);
+    hero_print_all(h);
+    printf("-------------------CUT-------------------\n");
+    hero_cut(&h, 5);
+    hero_print_all(h);
+    printf("-------------------CUT-------------------\n");
+    hero_cut(&h, 0);
     hero_print_all(h);
     free_memory(h);
 }
