@@ -133,6 +133,10 @@ Implémentez une calculatrice. La calculatrice doit
 *  * L'entrée `=` termine le programme, calcule le résultat, et affiche ce dernier.
 *  * Après chaque entrée, le calcul doit être affiché en entier.
 
+Vous pouvez utiliser les fonctions _atoi_ et _readline_ (ainsi que toutes ses fonctions associées), ou tout équivalent que vous aurez vous même codé.
+
+Vous ne trouverez pas de correction ou d'explications pour celui la. Bonne chance ~ 
+
 BONUS !
 
 * CTRL+D doit faire un _UNDO_ sur votre calcul, a savoir retire la dernière valeure entrée. Il est possible d'_UNDO_ l'entiereté du calcul ...
