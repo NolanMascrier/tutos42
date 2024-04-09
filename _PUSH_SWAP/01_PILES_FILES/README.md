@@ -54,6 +54,6 @@ void reverse_rotate(t_hero *t);
 ```
 Qui effectuent respectivement une rotation et une rotation inversée. 
 
-## Exercice 5 -
+## Exercice 5 - Premier pas vers les tris
 
 ## Examen
