@@ -68,6 +68,7 @@ Implémentez un tri radial basique. Utilisez 10 listes chainées pour substituer
 void radix_sort(t_hero *h0, t_hero *h1, ..., t_hero *h9);
 void radix_sort2(t_hero *h[]); //si vous vous souciez de la norme, utilisez un tableau de listes pour vos boites
 ```
+Utiliez la fonction push.
 >[!TIP]
 > Je vous ai demandé de faire un indexage pour une raison ...
 
@@ -76,6 +77,7 @@ Implémentez un tri par pignon basique. Triez en utilisant les puissances.
 ```C
 void  quicksort(t_hero *h);
 ```
+Utiliez les fonctions de la partie sur les piles et les files.
 >[!TIP]
 > La médiane est en général le meilleur pignon. En général ...
 
