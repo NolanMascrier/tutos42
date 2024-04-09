@@ -40,7 +40,7 @@ Qui va comparer deux chainons de la façon suivante : La somme des lettres du no
 >[!CAUTION]
 > Attention aux divisions par 0 !
 
->[!INFO]
+>[!NOTICE]
 > Vous avez remarqué le nom "hash". Le _hashing_ est une méthode en orienté objet qui permets de réduire un objet a un nombre, permettant alors une comparaison entre deux de ces objets. 
 
 ## Exercice 2 - Recherche le pignon
