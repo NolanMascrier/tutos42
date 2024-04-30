@@ -28,3 +28,6 @@ Votre processeur regarde alors chacune de ces parties, et applique les opératio
 
 # La mémoire
 
+En informatique, on distingue deux types de memoire : la memoire dure, et la memoire vive.
+
+La memoire dure est celle stockee dans vos disques durs (HDD) et SSD. Ils sont voue au stockage ... Et, ainsi, _lents_ a utiliser. Pour pallier a ce probleme, on utilise la memoire vive. Cette derniere a la particularite d'etre videe lorsque vous eteignez votre PC. Cependant, elle permets un acces rapide a ce qui est stocke dedans, comme des images, ou vos variables ...
